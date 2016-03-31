@@ -1,52 +1,42 @@
 'use strict';
 
-var _ = require('underscore');
+var _underscore = require('underscore');
 
-/**
-	Initialises the standard view locals
-*/
+var _underscore2 = _interopRequireDefault(_underscore);
 
-exports.initLocals = function (req, res, next) {
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var locals = res.locals;
+exports = module.exports = {
+  initLocals: function initLocals(req, res, next) {
+    var locals = res.locals;
+    locals.navLinks = [{
+      label: 'Home',
+      key: 'home',
+      href: '/'
+    }];
+    locals.user = req.user;
+    next();
+  },
 
-	locals.navLinks = [{ label: 'Home', key: 'home', href: '/' }];
+  flashMessages: function flashMessages(req, res, next) {
+    var flashMessages = {
+      info: req.flash('info'),
+      success: req.flash('success'),
+      warning: req.flash('warning'),
+      error: req.flash('error')
+    };
+    res.locals.messages = _underscore2.default.any(flashMessages, function (msgs) {
+      return msgs.length;
+    }) ? flashMessages : false;
+    next();
+  },
 
-	locals.user = req.user;
-
-	next();
-};
-
-/**
-	Fetches and clears the flashMessages before a view is rendered
-*/
-
-exports.flashMessages = function (req, res, next) {
-
-	var flashMessages = {
-		info: req.flash('info'),
-		success: req.flash('success'),
-		warning: req.flash('warning'),
-		error: req.flash('error')
-	};
-
-	res.locals.messages = _.any(flashMessages, function (msgs) {
-		return msgs.length;
-	}) ? flashMessages : false;
-
-	next();
-};
-
-/**
-	Prevents people from accessing protected pages when they're not signed in
- */
-
-exports.requireUser = function (req, res, next) {
-
-	if (!req.user) {
-		req.flash('error', 'Please sign in to access this page.');
-		res.redirect('/keystone/signin');
-	} else {
-		next();
-	}
+  requireUser: function requireUser(req, res, next) {
+    if (!req.user) {
+      req.flash('error', 'Please sign in to access this page.');
+      res.redirect('/keystone/signin');
+    } else {
+      next();
+    }
+  }
 };

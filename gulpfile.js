@@ -11,7 +11,7 @@ gulp.task('compile', () => {
     .pipe(gulp.dest('server/build'));
 });
 
-gulp.task('watch:js', () => {
+gulp.task('watch:js', ['compile'],  () => {
   gulp.watch('server/src/**/*.js', ['compile']);
 });
 

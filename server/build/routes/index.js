@@ -1,21 +1,24 @@
 'use strict';
 
-var keystone = require('keystone');
-var middleware = require('./middleware');
-var importRoutes = keystone.importer(__dirname);
+var _keystone = require('keystone');
 
-// Common Middleware
-keystone.pre('routes', middleware.initLocals);
-keystone.pre('render', middleware.flashMessages);
+var _keystone2 = _interopRequireDefault(_keystone);
 
-// Import Route Controllers
+var _middleware = require('./middleware');
+
+var _middleware2 = _interopRequireDefault(_middleware);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var importRoutes = _keystone2.default.importer(__dirname);
+
+_keystone2.default.pre('routes', _middleware2.default.initLocals);
+_keystone2.default.pre('render', _middleware2.default.flashMessages);
+
 var routes = {
-	views: importRoutes('./views')
+  views: importRoutes('./views')
 };
 
-// Setup Route Bindings
 exports = module.exports = function (app) {
-
-	// Views
-	app.get('/', routes.views.index);
+  app.get('/', routes.views.index);
 };
