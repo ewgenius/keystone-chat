@@ -43,4 +43,6 @@ _keystone2.default.set('nav', {
 	'users': 'users'
 });
 
-_keystone2.default.start();
+_keystone2.default.start(function () {
+	_keystone2.default.mongoose.Promise = Promise;
+});

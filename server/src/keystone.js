@@ -31,4 +31,6 @@ keystone.set('nav', {
 	'users': 'users'
 });
 
-keystone.start();
+keystone.start(() => {
+	keystone.mongoose.Promise = Promise;
+});
