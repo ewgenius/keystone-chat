@@ -1,38 +1,31 @@
-// Simulate config options from your production environment by
-// customising the .env file in your project's root folder.
-require('dotenv').load();
-
-// Require keystone
-var keystone = require('keystone');
+import keystone from 'keystone';
+import _ from 'underscore';
+import routes from './routes';
 
 keystone.init({
-
 	'name': 'keystone-chat',
 	'brand': 'keystone-chat',
-	
-	'sass': 'public',
-	'static': 'public',
-	'favicon': 'public/favicon.ico',
-	'views': 'templates/views',
+	'sass': '../public',
+	'static': '../public',
+	'favicon': '../public/favicon.ico',
+	'views': '../templates/views',
 	'view engine': 'jade',
-	
 	'auto update': true,
 	'session': true,
 	'auth': true,
 	'user model': 'User'
-
 });
 
 keystone.import('models');
 
 keystone.set('locals', {
-	_: require('underscore'),
+	_: _,
 	env: keystone.get('env'),
 	utils: keystone.utils,
 	editable: keystone.content.editable
 });
 
-keystone.set('routes', require('./routes'));
+keystone.set('routes', routes);
 
 keystone.set('nav', {
 	'users': 'users'
