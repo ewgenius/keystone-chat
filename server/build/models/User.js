@@ -7,6 +7,7 @@ var _keystone2 = _interopRequireDefault(_keystone);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Types = _keystone2.default.Field.Types;
+
 var User = new _keystone2.default.List('User');
 
 User.add({
