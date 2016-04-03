@@ -1,6 +1,7 @@
 import keystone from 'keystone';
 import _ from 'underscore';
 import routes from './routes';
+import SocketService from './lib/socket.js';
 
 keystone.init({
 	'name': 'keystone-chat',
@@ -33,4 +34,6 @@ keystone.set('nav', {
 
 keystone.start(() => {
 	keystone.mongoose.Promise = Promise;
+
+	keystone.socket = new SocketService();
 });

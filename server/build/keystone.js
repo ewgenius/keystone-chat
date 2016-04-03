@@ -12,6 +12,10 @@ var _routes = require('./routes');
 
 var _routes2 = _interopRequireDefault(_routes);
 
+var _socket = require('./lib/socket.js');
+
+var _socket2 = _interopRequireDefault(_socket);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _keystone2.default.init({
@@ -45,4 +49,6 @@ _keystone2.default.set('nav', {
 
 _keystone2.default.start(function () {
 	_keystone2.default.mongoose.Promise = Promise;
+
+	_keystone2.default.socket = new _socket2.default();
 });
