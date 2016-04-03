@@ -1,7 +1,7 @@
-var gulp = require('gulp');
-var watch = require('gulp-watch');
-var shell = require('gulp-shell')
-var babel = require('gulp-babel');
+import gulp from 'gulp';
+import watch from 'gulp-watch';
+import shell from 'gulp-shell';
+import babel from 'gulp-babel';
 
 gulp.task('compile', () => {
   gulp.src('server/src/**/*.js')
@@ -11,10 +11,10 @@ gulp.task('compile', () => {
     .pipe(gulp.dest('server/build'));
 });
 
-gulp.task('watch:js', ['compile'],  () => {
+gulp.task('watch:js', ['compile'], () => {
   gulp.watch('server/src/**/*.js', ['compile']);
 });
 
 gulp.task('runKeystone', shell.task('node server/index.js'));
 
-gulp.task('default', ['watch', 'runKeystone']);
+gulp.task('default', ['watch:js', 'runKeystone']);
