@@ -1,7 +1,7 @@
 import _ from 'underscore';
 
-exports = module.exports = {
-  initLocals: (req, res, next) => {
+export default {
+  initLocals(req, res, next) {
     var locals = res.locals;
     locals.navLinks = [{
       label: 'Home',
@@ -12,7 +12,7 @@ exports = module.exports = {
     next();
   },
 
-  flashMessages: (req, res, next) => {
+  flashMessages(req, res, next) {
     var flashMessages = {
       info: req.flash('info'),
       success: req.flash('success'),
@@ -25,7 +25,7 @@ exports = module.exports = {
     next();
   },
 
-  requireUser: (req, res, next) => {
+  requireUser(req, res, next) {
     if (!req.user) {
       req.flash('error', 'Please sign in to access this page.');
       res.redirect('/keystone/signin');

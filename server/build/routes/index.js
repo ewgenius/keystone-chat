@@ -1,5 +1,9 @@
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _keystone = require('keystone');
 
 var _keystone2 = _interopRequireDefault(_keystone);
@@ -19,6 +23,8 @@ var routes = {
   views: importRoutes('./views')
 };
 
-exports = module.exports = function (app) {
+var initRoutes = function initRoutes(app) {
   app.get('/', routes.views.index);
 };
+
+exports.default = initRoutes;

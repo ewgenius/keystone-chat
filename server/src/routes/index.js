@@ -5,10 +5,12 @@ const importRoutes = keystone.importer(__dirname);
 keystone.pre('routes', middleware.initLocals);
 keystone.pre('render', middleware.flashMessages);
 
-var routes = {
+const routes = {
   views: importRoutes('./views')
 };
 
-exports = module.exports = function(app) {
+const initRoutes = function(app) {
   app.get('/', routes.views.index);
 };
+
+export default initRoutes;

@@ -1,12 +1,16 @@
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _underscore = require('underscore');
 
 var _underscore2 = _interopRequireDefault(_underscore);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports = module.exports = {
+exports.default = {
   initLocals: function initLocals(req, res, next) {
     var locals = res.locals;
     locals.navLinks = [{
@@ -17,7 +21,6 @@ exports = module.exports = {
     locals.user = req.user;
     next();
   },
-
   flashMessages: function flashMessages(req, res, next) {
     var flashMessages = {
       info: req.flash('info'),
@@ -30,7 +33,6 @@ exports = module.exports = {
     }) ? flashMessages : false;
     next();
   },
-
   requireUser: function requireUser(req, res, next) {
     if (!req.user) {
       req.flash('error', 'Please sign in to access this page.');
